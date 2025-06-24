@@ -8,7 +8,7 @@ Preprint available: https://www.medrxiv.org/content/10.1101/2024.10.01.24314372v
 **Data Availability:**
 Raw data are not available due to restrictions in our consent form. Data for the purposes of reproduction only is available by request to luisa.maria.rivera@gmail.com.
 
-Our DNA methyltion preprocessing pipeline and cell-type deconvolution is not presented here but is available upon request. 
+Our DNA methylation preprocessing pipeline and cell-type deconvolution is not presented here but is available upon request. 
 
 Epigenetic age estimates were generated using the Biolearn tool from the Biomarkers of Aging consortium available at: https://bio-learn.github.io/.
 
@@ -21,6 +21,11 @@ The "Processing.R" file is the basic data processing file.
 The "Analysis.R" file contains the analysis in the main text.
 - We begin by running a series of regression models investigating the effect of exposure group on aging estimates with and without adjustment for postnatal ACES.
 - We extract effect sizes and plot these to demonstrate the increased sensitivity of second generation clocks compared with first generation clocks to the prenatal environment.
+
+The "revision_analyses.R" script contains analysis requested by reviewers after peer review. 
+- We compare exposure group BMI and SES
+- We use the epismoker package to estimate smoking prevalence in participants from DNA methylation data.
+- We conduct sensititivity analyses with interaction by sex and with additional immune cell type principle components.
   
 
 
