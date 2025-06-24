@@ -18,6 +18,8 @@ d$group_factor <- factor(d$group,
                          labels = c("Control", "Single Exposed","Double Exposed"))
 
 
+list(d)
+
 # Create Table 1 Descriptive Statistics
 library(table1)
 
@@ -76,7 +78,7 @@ save_as_docx(
   ft3 <- as_flextable(YingAdaptAge1)
   ft4 <- as_flextable(YingAdaptAge2)
   ft5 <- as_flextable(Grim1)
-  ft6 <- as_flextable(Grim1)
+  ft6 <- as_flextable(Grim2)
   ft7 <- as_flextable(Dunedin1)  
   ft8 <- as_flextable(Dunedin2)
   
@@ -299,6 +301,12 @@ write_csv(d_combined_export2 %>% select(model_2, term2, std_mean_diff, lower_95_
 library(patchwork)
 p_noadj + p_adj
 
+
+
+############Sensitivity analyses##############
+
+
+
 ############Supplementary plots###############
   
   ## Immune cell pca
@@ -374,15 +382,14 @@ dunedin_plot
   mean(d$realAge)
   sd(d$realAge)
   
-  clock_density <- ggplot(d, aes(x = residuals_Horvath, fill = "Horvath")) +
+  clock_density <- ggplot(d, aes(x = mAge_Hovath, fill = "Horvath")) +
     geom_density(alpha = 0.5) +
-    geom_density(aes(x = residuals_Hannum, fill = "Hannum"), alpha = 0.5) +
-    geom_density(aes(x = residuals_PhenoAge, fill = "PhenoAge"), alpha = 0.5) +
-    geom_density(aes(x = residuals_YingAdaptAge, fill = "YingAdaptAge"), alpha = 0.5) +
-    geom_density(aes(x = residuals_YingDamAge, fill = "YingDamAge"), alpha = 0.5) +
-    geom_density(aes(x = residuals_dunedin, fill = "Dunedin Pace"), alpha = 0.5) +
-    annotate("text", x = 30, y = 0.2, label = "Chronological Age (mean = 24.12, sd = .10)", vjust = -1, color = "black") + 
-    labs(title = "Age residuals",
+    geom_density(aes(x = mAge_Hannum, fill = "Hannum"), alpha = 0.5) +
+    geom_density(aes(x = PhenoAge, fill = "PhenoAge"), alpha = 0.5) +
+    geom_density(aes(x = YingAdaptAge, fill = "YingAdaptAge"), alpha = 0.5) +
+    geom_density(aes(x = YingDamAge, fill = "YingDamAge"), alpha = 0.5) +
+    ##annotate("text", x = 30, y = 0.2, label = "Chronological Age (mean = 24.12, sd = .10)", vjust = -1, color = "black") + 
+    labs(title = "",
          x = "Predicted Age",
          y = "Density",
          fill = "Clock Type") +
@@ -515,6 +522,7 @@ allcor <- firstcor+secondcor
 print(allcor)
 
 
+
 #Immune cell pca visualization
 
 res.pca <- prcomp(subset_vars, scale = F)
@@ -529,6 +537,7 @@ fviz_pca_var(res.pca,
 
 
 
+
 fviz_pca_ind(res.pca,
              col.ind = "cos2", # Color by the quality of representation
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
@@ -536,3 +545,6 @@ fviz_pca_ind(res.pca,
 )
 
 
+
+
+  
